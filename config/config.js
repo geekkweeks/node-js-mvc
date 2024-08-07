@@ -10,6 +10,14 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorageTableName: "migrations",
+    logging:
+      process.env.NODE_EN === "development"
+        ? (...msg) => console.log(msg)
+        : false,
+    dialectOptions: {
+      requestTimeout: 30000,
+      encrypt: true,
+    },
   },
   test: {
     username: process.env.DB_USER,
@@ -18,6 +26,10 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorageTableName: "migrations",
+    dialectOptions: {
+      requestTimeout: 30000,
+      encrypt: true,
+    },
   },
   production: {
     username: process.env.DB_USER,
@@ -26,5 +38,9 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     migrationStorageTableName: "migrations",
+    dialectOptions: {
+      requestTimeout: 30000,
+      encrypt: true,
+    },
   },
 };
